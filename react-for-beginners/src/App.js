@@ -1,24 +1,20 @@
-import styles from "./App.module.css";
-import { useState, useEffect} from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Detail from "./routes/Detail";
+import Home from "./routes/Home";
 
 function App() {
-  const [counter, setValue] = useState(0);
-  const onClick = () => setValue((prev) => prev + 1);
-  const [keyword, setKeyword] = useState("");
-  const onChange = (event) => setKeyword(event.target.value);
-  console.log("all time");
-
-  useEffect(() => {console.log("api");},[]);
-  useEffect(() => {console.log("search for", keyword);}, [keyword]);
-
-console.log({keyword});
   return (
-    <div>
-      <input value={keyword} onChange={onChange} type="text" placeholder="Search" />
-      <h1 className={styles.title}>{counter}</h1>
-      <button onClick={onClick}>click me</button>
-    </div>
-  );
+  <Router>
+    <Routes>
+      <Route path="/movie/:id" element={<Detail />} />
+      <Route path="/" element={<Home />} />
+    </Routes>
+  </Router>
+  )
 }
 
 export default App;
